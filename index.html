@@ -1,0 +1,1207 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SafiriCare</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap">
+<style>
+:root {
+  --primary: #1A5276;
+  --primary-light: #2471A3;
+  --secondary: #1A7A45;
+  --secondary-light: #239B56;
+  --accent: #E67E22;
+  --accent-light: #F39C12;
+  --bg: #F7F9FC;
+  --white: #FFFFFF;
+  --text: #1A202C;
+  --muted: #64748B;
+  --border: #E2E8F0;
+  --hero-bg: #0D3B6E;
+  --card-shadow: 0 2px 16px rgba(26,82,118,0.10);
+  --radius: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1923;
+    --white: #1A2535;
+    --text: #E8F0F8;
+    --muted: #94A3B8;
+    --border: #263348;
+    --card-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1923;
+  --white: #1A2535;
+  --text: #E8F0F8;
+  --muted: #94A3B8;
+  --border: #263348;
+  --card-shadow: 0 2px 16px rgba(0,0,0,0.3);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--primary-light); text-decoration: none; }
+
+/* NAV */
+nav {
+  position: sticky; top: env(safe-area-inset-top, 0px);
+  background: var(--hero-bg);
+  padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--accent-light); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.lang-toggle {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.lang-toggle:hover { background: rgba(255,255,255,0.25); }
+.nav-cta {
+  background: var(--accent);
+  color: #FFFFFF;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  display: none;
+}
+@media (min-width: 640px) { .nav-cta { display: block; } }
+.nav-cta:hover { background: var(--accent-light); color: #FFFFFF; }
+
+/* SECTIONS */
+section { padding: 72px 24px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  text-wrap: balance;
+  margin-bottom: 16px;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 620px;
+  margin-bottom: 48px;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #0D3B6E 0%, #1A5276 60%, #1A7A45 100%);
+  padding: 80px 24px 90px;
+  color: #FFFFFF;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #FFFFFF;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  position: relative;
+}
+.hero h1 span { color: var(--accent-light); }
+.hero-tagline {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 300;
+  opacity: 0.9;
+  margin-bottom: 36px;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--accent);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 32px;
+  border-radius: 10px;
+  transition: transform 0.2s, background 0.2s;
+}
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); color: #FFFFFF; }
+.btn-outline {
+  background: transparent;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 32px;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.4);
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-outline:hover { border-color: #FFFFFF; background: rgba(255,255,255,0.1); }
+.hero-stats {
+  display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent-light);
+  font-variant-numeric: tabular-nums;
+}
+.hero-stat-label {
+  font-size: 0.82rem;
+  opacity: 0.75;
+  margin-top: 4px;
+  max-width: 130px;
+}
+
+/* PROBLEM */
+.problem { background: var(--white); }
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.problem-card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 28px;
+  border-left: 4px solid var(--accent);
+}
+.problem-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.problem-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+
+/* HOW IT WORKS */
+.how { background: var(--bg); }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.step-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--card-shadow);
+  text-align: center;
+  position: relative;
+}
+.step-icon {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.step-num {
+  position: absolute;
+  top: 16px; right: 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.step-title { font-weight: 600; font-size: 1rem; margin-bottom: 8px; }
+.step-desc { font-size: 0.88rem; color: var(--muted); }
+
+/* CARE JOURNEY DEMO */
+.journey { background: var(--white); }
+.journey-demo {
+  background: linear-gradient(135deg, #0D3B6E 0%, #1A5276 100%);
+  border-radius: 20px;
+  padding: 36px 32px;
+  margin-top: 40px;
+  color: #FFFFFF;
+  overflow: hidden;
+  position: relative;
+}
+.journey-patient-info {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.patient-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.patient-name { font-weight: 600; font-size: 1rem; }
+.patient-detail { font-size: 0.82rem; opacity: 0.7; margin-top: 2px; }
+.journey-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 20px;
+}
+.journey-steps { display: flex; flex-direction: column; gap: 0; }
+.journey-step {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+.journey-step.completed { opacity: 1; }
+.journey-step.active { opacity: 1; }
+.journey-step:last-child { border-bottom: none; }
+.step-indicator {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.2);
+  font-variant-numeric: tabular-nums;
+}
+.journey-step.completed .step-indicator {
+  background: var(--secondary-light);
+  border-color: var(--secondary-light);
+}
+.journey-step.active .step-indicator {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(230,126,34,0.3);
+}
+.step-info { flex: 1; min-width: 0; }
+.step-role {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 2px;
+}
+.step-action { font-weight: 500; font-size: 0.95rem; }
+.step-time { font-size: 0.75rem; opacity: 0.5; margin-top: 2px; }
+.step-status-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.badge-done { background: rgba(26,122,69,0.3); color: #6EE7A7; }
+.badge-active { background: rgba(230,126,34,0.3); color: #FCD34D; }
+.badge-pending { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
+.journey-controls {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.journey-progress {
+  font-size: 0.82rem;
+  opacity: 0.6;
+}
+.journey-btn {
+  background: var(--accent);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.journey-btn:hover { background: var(--accent-light); }
+.journey-btn:disabled { opacity: 0.4; cursor: default; }
+.journey-note {
+  margin-top: 16px;
+  font-size: 0.78rem;
+  opacity: 0.5;
+  text-align: center;
+  font-style: italic;
+}
+
+/* PLATFORM / ROLES */
+.platform { background: var(--bg); }
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+.role-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  box-shadow: var(--card-shadow);
+  text-align: center;
+  transition: transform 0.2s;
+}
+.role-card:hover { transform: translateY(-3px); }
+.role-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+.role-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; color: var(--primary); }
+.role-desc { font-size: 0.82rem; color: var(--muted); }
+
+/* TECH */
+.tech { background: var(--white); }
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.tech-card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.tech-badge {
+  background: var(--primary);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.tech-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+.tech-desc { font-size: 0.85rem; color: var(--muted); }
+
+/* DONORS */
+.donors {
+  background: linear-gradient(135deg, var(--primary) 0%, #0D2D4F 100%);
+  color: #FFFFFF;
+  text-align: center;
+}
+.donors .section-title { color: #FFFFFF; }
+.donors .section-subtitle { color: rgba(255,255,255,0.75); margin-left: auto; margin-right: auto; }
+.donors .section-label { color: var(--accent-light); }
+.donors-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin: 40px 0 48px;
+}
+.donors-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: left;
+}
+.donors-card-icon { font-size: 1.8rem; margin-bottom: 12px; }
+.donors-card-title { font-weight: 600; margin-bottom: 6px; }
+.donors-card-text { font-size: 0.85rem; opacity: 0.7; }
+.donors-cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-white {
+  background: #FFFFFF;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 32px;
+  border-radius: 10px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.btn-white:hover { transform: translateY(-1px); opacity: 0.92; color: var(--primary); }
+
+/* FOOTER */
+footer {
+  background: #0A1E36;
+  color: rgba(255,255,255,0.6);
+  padding: 48px 24px 32px;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #FFFFFF;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.footer-logo span { color: var(--accent-light); }
+.footer-tagline { font-size: 0.85rem; max-width: 220px; }
+.footer-contact { font-size: 0.85rem; }
+.footer-contact p { margin-bottom: 6px; }
+.footer-contact a { color: rgba(255,255,255,0.75); }
+.footer-contact a:hover { color: #FFFFFF; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.demo-banner {
+  background: rgba(230,126,34,0.15);
+  border: 1px solid rgba(230,126,34,0.3);
+  color: var(--accent-light);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  section { padding: 56px 16px; }
+  .hero { padding: 60px 16px 72px; }
+  .hero-stats { gap: 20px; }
+  .journey-demo { padding: 24px 20px; }
+  .footer-top { flex-direction: column; }
+}
+
+/* LANGUAGE HIDDEN */
+[data-en], [data-fr] { display: inline; }
+html[data-lang="fr"] [data-en] { display: none; }
+html[data-lang="en"] [data-fr] { display: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Safiri<span>Care</span></div>
+  <div class="nav-right">
+    <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language">
+      <span data-en>FR</span><span data-fr>EN</span>
+    </button>
+    <a href="#contact" class="nav-cta">
+      <span data-en>Partner with us</span>
+      <span data-fr>Devenir partenaire</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span data-en>Maternal Healthcare Platform &mdash; Democratic Republic of Congo</span>
+      <span data-fr>Plateforme de Santé Maternelle &mdash; République Démocratique du Congo</span>
+    </div>
+    <h1>Safiri<span>Care</span></h1>
+    <p class="hero-tagline">
+      <span data-en>Connecting patients, community workers, clinics and pharmacies so no one faces a health crisis alone.</span>
+      <span data-fr>Connecter les patients, les agents communautaires, les cliniques et les pharmacies pour que personne n'affronte une crise de santé seul.</span>
+    </p>
+    <div class="hero-buttons">
+      <a href="#demo" class="btn-primary">
+        <span data-en>See it in action</span>
+        <span data-fr>Voir en action</span>
+      </a>
+      <a href="#partners" class="btn-outline">
+        <span data-en>For donors &amp; partners</span>
+        <span data-fr>Pour les donateurs</span>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">473</div>
+        <div class="hero-stat-label">
+          <span data-en>maternal deaths per 100,000 live births in DRC</span>
+          <span data-fr>décès maternels pour 100 000 naissances en RDC</span>
+        </div>
+      </div>
+      <div>
+        <div class="hero-stat-num">54%</div>
+        <div class="hero-stat-label">
+          <span data-en>of births have skilled health attendance</span>
+          <span data-fr>des accouchements avec personnel qualifié</span>
+        </div>
+      </div>
+      <div>
+        <div class="hero-stat-num">7</div>
+        <div class="hero-stat-label">
+          <span data-en>roles connected in one coordinated care journey</span>
+          <span data-fr>rôles connectés dans un parcours de soins coordonné</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="container">
+    <p class="section-label">
+      <span data-en>The Problem</span>
+      <span data-fr>Le Problème</span>
+    </p>
+    <h2 class="section-title">
+      <span data-en>Preventable deaths due to disconnected care</span>
+      <span data-fr>Des décès évitables à cause de soins fragmentés</span>
+    </h2>
+    <p class="section-subtitle">
+      <span data-en>In the DRC, the gap between a pregnant woman and the care she needs is not always a question of distance. It is a question of information, coordination, and visibility.</span>
+      <span data-fr>En RDC, l'écart entre une femme enceinte et les soins dont elle a besoin n'est pas toujours une question de distance. C'est une question d'information, de coordination et de visibilité.</span>
+    </p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">80%</div>
+        <p class="problem-desc">
+          <span data-en>of maternal deaths are preventable with timely referral to equipped facilities.</span>
+          <span data-fr>des décès maternels sont évitables avec une orientation rapide vers des établissements équipés.</span>
+        </p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">46%</div>
+        <p class="problem-desc">
+          <span data-en>of Congolese women live more than 5 km from the nearest health facility.</span>
+          <span data-fr>des femmes congolaises vivent à plus de 5 km de l'établissement de santé le plus proche.</span>
+        </p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">0</div>
+        <p class="problem-desc">
+          <span data-en>digital tools connecting community workers to clinics, labs and pharmacies in real time in most districts.</span>
+          <span data-fr>outils numériques reliant les agents communautaires aux cliniques, laboratoires et pharmacies en temps réel dans la plupart des districts.</span>
+        </p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">9M+</div>
+        <p class="problem-desc">
+          <span data-en>pregnancies per year in DRC with no coordinated digital follow-up between providers.</span>
+          <span data-fr>grossesses par an en RDC sans suivi numérique coordonné entre prestataires.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <p class="section-label">
+      <span data-en>How SafiriCare Works</span>
+      <span data-fr>Comment fonctionne SafiriCare</span>
+    </p>
+    <h2 class="section-title">
+      <span data-en>Care that follows the patient, not the paper</span>
+      <span data-fr>Des soins qui suivent le patient, pas le papier</span>
+    </h2>
+    <p class="section-subtitle">
+      <span data-en>A single coordinated journey from first contact to pharmacy collection, visible to everyone responsible for that patient's care.</span>
+      <span data-fr>Un parcours coordonné du premier contact à la collecte en pharmacie, visible pour tous les responsables des soins de ce patient.</span>
+    </p>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">🧑‍⚕️</div>
+        <div class="step-title">
+          <span data-en>Community Registration</span>
+          <span data-fr>Enregistrement communautaire</span>
+        </div>
+        <p class="step-desc">
+          <span data-en>A community health worker registers the patient, records the concern, and opens a care record.</span>
+          <span data-fr>Un agent de santé communautaire enregistre le patient, note la préoccupation et ouvre un dossier de soins.</span>
+        </p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">📋</div>
+        <div class="step-title">
+          <span data-en>Digital Referral</span>
+          <span data-fr>Orientation numérique</span>
+        </div>
+        <p class="step-desc">
+          <span data-en>The nearest equipped clinic receives an alert and confirms they can receive the patient, with estimated wait time.</span>
+          <span data-fr>La clinique équipée la plus proche reçoit une alerte et confirme sa disponibilité, avec un temps d'attente estimé.</span>
+        </p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">🏥</div>
+        <div class="step-title">
+          <span data-en>Consultation &amp; Testing</span>
+          <span data-fr>Consultation et tests</span>
+        </div>
+        <p class="step-desc">
+          <span data-en>The clinic records the consultation, requests lab tests if needed, and the lab links results directly to the patient record.</span>
+          <span data-fr>La clinique enregistre la consultation, demande des analyses si nécessaire, et le laboratoire lie les résultats directement au dossier.</span>
+        </p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-icon">💊</div>
+        <div class="step-title">
+          <span data-en>Prescription &amp; Collection</span>
+          <span data-fr>Ordonnance et collecte</span>
+        </div>
+        <p class="step-desc">
+          <span data-en>An authorised prescription is sent to the pharmacy digitally. Collection is confirmed and follow-up is scheduled automatically.</span>
+          <span data-fr>Une ordonnance autorisée est envoyée numériquement à la pharmacie. La collecte est confirmée et le suivi planifié automatiquement.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARE JOURNEY DEMO -->
+<section class="journey" id="demo">
+  <div class="container">
+    <p class="section-label">
+      <span data-en>Live Prototype</span>
+      <span data-fr>Prototype interactif</span>
+    </p>
+    <h2 class="section-title">
+      <span data-en>Follow one patient's full journey</span>
+      <span data-fr>Suivez le parcours complet d'un patient</span>
+    </h2>
+    <p class="section-subtitle">
+      <span data-en>All data shown is fictional and for demonstration only. This is a working prototype of the SafiriCare coordination flow.</span>
+      <span data-fr>Toutes les données affichées sont fictives et uniquement à titre de démonstration. Il s'agit d'un prototype fonctionnel du flux de coordination SafiriCare.</span>
+    </p>
+    <div class="journey-demo" id="journeyDemo">
+      <div class="journey-patient-info">
+        <div class="patient-avatar">👩🏾</div>
+        <div>
+          <div class="patient-name">
+            <span data-en>Amina K. &mdash; Fictional demo patient</span>
+            <span data-fr>Amina K. &mdash; Patient fictive pour démonstration</span>
+          </div>
+          <div class="patient-detail">
+            <span data-en>28 years old &bull; Week 32 of pregnancy &bull; Kinshasa district</span>
+            <span data-fr>28 ans &bull; Semaine 32 de grossesse &bull; District de Kinshasa</span>
+          </div>
+        </div>
+      </div>
+      <div class="journey-label">
+        <span data-en>Care journey status</span>
+        <span data-fr>Statut du parcours de soins</span>
+      </div>
+      <div class="journey-steps" id="journeySteps"></div>
+      <div class="journey-controls">
+        <div class="journey-progress" id="journeyProgress"></div>
+        <button class="journey-btn" id="journeyBtn" onclick="advanceJourney()">
+          <span data-en>Next step</span>
+          <span data-fr>Étape suivante</span>
+        </button>
+      </div>
+      <div class="journey-note">
+        <span data-en>Fictional data only. No real patients. For partner and donor demonstration.</span>
+        <span data-fr>Données fictives uniquement. Aucun patient réel. Pour démonstration partenaires et donateurs.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM ROLES -->
+<section class="platform" id="platform">
+  <div class="container">
+    <p class="section-label">
+      <span data-en>The Platform</span>
+      <span data-fr>La Plateforme</span>
+    </p>
+    <h2 class="section-title">
+      <span data-en>One system, six connected roles</span>
+      <span data-fr>Un système, six rôles connectés</span>
+    </h2>
+    <p class="section-subtitle">
+      <span data-en>Each user sees only what they need for their responsibilities. Access is role-based and encrypted.</span>
+      <span data-fr>Chaque utilisateur voit uniquement ce qui concerne ses responsabilités. L'accès est basé sur le rôle et chiffré.</span>
+    </p>
+    <div class="roles-grid">
+      <div class="role-card">
+        <span class="role-icon">🤰🏾</span>
+        <div class="role-title">
+          <span data-en>Patient</span>
+          <span data-fr>Patient</span>
+        </div>
+        <p class="role-desc">
+          <span data-en>Receives care updates, appointment reminders, and safe health notifications.</span>
+          <span data-fr>Reçoit des mises à jour sur les soins, des rappels de rendez-vous et des notifications santé sécurisées.</span>
+        </p>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🧑‍⚕️</span>
+        <div class="role-title">
+          <span data-en>Community Worker</span>
+          <span data-fr>Agent Communautaire</span>
+        </div>
+        <p class="role-desc">
+          <span data-en>Registers patients, creates referrals, and completes assigned home visits.</span>
+          <span data-fr>Enregistre les patients, crée des orientations et effectue les visites à domicile.</span>
+        </p>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🏥</span>
+        <div class="role-title">
+          <span data-en>Clinic / Hospital</span>
+          <span data-fr>Clinique / Hôpital</span>
+        </div>
+        <p class="role-desc">
+          <span data-en>Responds to referrals, records consultations, and requests laboratory tests.</span>
+          <span data-fr>Répond aux orientations, enregistre les consultations et demande des analyses de laboratoire.</span>
+        </p>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">🔬</span>
+        <div class="role-title">
+          <span data-en>Laboratory</span>
+          <span data-fr>Laboratoire</span>
+        </div>
+        <p class="role-desc">
+          <span data-en>Records verified results linked to the correct patient and test request.</span>
+          <span data-fr>Enregistre les résultats vérifiés liés au bon patient et à la bonne demande d'analyse.</span>
+        </p>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">💊</span>
+        <div class="role-title">
+          <span data-en>Pharmacy</span>
+          <span data-fr>Pharmacie</span>
+        </div>
+        <p class="role-desc">
+          <span data-en>Verifies prescriptions, confirms availability, and records dispensing.</span>
+          <span data-fr>Vérifie les ordonnances, confirme la disponibilité et enregistre la dispensation.</span>
+        </p>
+      </div>
+      <div class="role-card">
+        <span class="role-icon">📊</span>
+        <div class="role-title">
+          <span data-en>Coordinator</span>
+          <span data-fr>Coordinateur</span>
+        </div>
+        <p class="role-desc">
+          <span data-en>Monitors unresolved referrals, missed follow-ups, and overall service activity.</span>
+          <span data-fr>Surveille les orientations non résolues, les suivis manqués et l'activité générale des services.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section class="tech" id="technology">
+  <div class="container">
+    <p class="section-label">
+      <span data-en>Technology</span>
+      <span data-fr>Technologie</span>
+    </p>
+    <h2 class="section-title">
+      <span data-en>Built for low connectivity and open interoperability</span>
+      <span data-fr>Conçu pour la faible connectivité et l'interopérabilité ouverte</span>
+    </h2>
+    <p class="section-subtitle">
+      <span data-en>Works on inexpensive smartphones, connects with existing health systems, and protects patient privacy by design.</span>
+      <span data-fr>Fonctionne sur des smartphones bas de gamme, se connecte aux systèmes de santé existants et protège la vie privée des patients par conception.</span>
+    </p>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-badge">Backend</div>
+        <div>
+          <div class="tech-name">Python / Django</div>
+          <p class="tech-desc">
+            <span data-en>Robust, open-source backend with role-based access, audit logs, and encrypted storage.</span>
+            <span data-fr>Backend robuste et open-source avec accès basé sur les rôles, journaux d'audit et stockage chiffré.</span>
+          </p>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-badge">Database</div>
+        <div>
+          <div class="tech-name">PostgreSQL</div>
+          <p class="tech-desc">
+            <span data-en>Reliable, encrypted patient data storage with backup and recovery built in.</span>
+            <span data-fr>Stockage sécurisé des données patients avec sauvegarde et récupération intégrées.</span>
+          </p>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-badge">Standard</div>
+        <div>
+          <div class="tech-name">HL7 FHIR</div>
+          <p class="tech-desc">
+            <span data-en>Interoperable interfaces for OpenMRS, DHIS2, laboratory and pharmacy partner systems.</span>
+            <span data-fr>Interfaces interopérables pour OpenMRS, DHIS2, laboratoires et pharmacies partenaires.</span>
+          </p>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-badge">Offline</div>
+        <div>
+          <div class="tech-name">
+            <span data-en>Low-connectivity mode</span>
+            <span data-fr>Mode faible connectivité</span>
+          </div>
+          <p class="tech-desc">
+            <span data-en>Key functions work offline with visible sync status and duplicate-record protection.</span>
+            <span data-fr>Les fonctions clés fonctionnent hors ligne avec état de synchronisation visible et protection contre les doublons.</span>
+          </p>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-badge">Privacy</div>
+        <div>
+          <div class="tech-name">
+            <span data-en>Role-based access control</span>
+            <span data-fr>Contrôle d'accès basé sur les rôles</span>
+          </div>
+          <p class="tech-desc">
+            <span data-en>Each professional sees only their authorised care responsibilities. No cross-role data exposure.</span>
+            <span data-fr>Chaque professionnel voit uniquement ses responsabilités autorisées. Aucune exposition croisée des données.</span>
+          </p>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-badge">Open source</div>
+        <div>
+          <div class="tech-name">GitHub Repository</div>
+          <p class="tech-desc">
+            <span data-en>Code developed in a SafiriCare-owned repository, initially private, prepared for open-source release.</span>
+            <span data-fr>Code développé dans un dépôt appartenant à SafiriCare, initialement privé, préparé pour une publication open-source.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONORS / PARTNERS -->
+<section class="donors" id="partners">
+  <div class="container">
+    <p class="section-label">
+      <span data-en>For Donors &amp; Partners</span>
+      <span data-fr>Pour les Donateurs et Partenaires</span>
+    </p>
+    <h2 class="section-title">
+      <span data-en>Be part of the solution</span>
+      <span data-fr>Faites partie de la solution</span>
+    </h2>
+    <p class="section-subtitle">
+      <span data-en>SafiriCare is a registered NGO with validation from Congo's healthcare authorities. We are seeking pilot partners, technical collaborators, and funding for the first deployment phase.</span>
+      <span data-fr>SafiriCare est une ONG enregistrée avec la validation des autorités sanitaires congolaises. Nous recherchons des partenaires pilotes, des collaborateurs techniques et des financements pour la première phase de déploiement.</span>
+    </p>
+    <div class="donors-cards">
+      <div class="donors-card">
+        <div class="donors-card-icon">🤝</div>
+        <div class="donors-card-title">
+          <span data-en>Pilot partners</span>
+          <span data-fr>Partenaires pilotes</span>
+        </div>
+        <p class="donors-card-text">
+          <span data-en>Clinics, community health organisations, and laboratories ready to co-develop the first deployment.</span>
+          <span data-fr>Cliniques, organisations de santé communautaire et laboratoires prêts à co-développer le premier déploiement.</span>
+        </p>
+      </div>
+      <div class="donors-card">
+        <div class="donors-card-icon">💶</div>
+        <div class="donors-card-title">
+          <span data-en>Development funding</span>
+          <span data-fr>Financement du développement</span>
+        </div>
+        <p class="donors-card-text">
+          <span data-en>Covering platform development, security audits, clinical workflow approval and initial staff training.</span>
+          <span data-fr>Couvrant le développement de la plateforme, les audits de sécurité, l'approbation des flux cliniques et la formation initiale.</span>
+        </p>
+      </div>
+      <div class="donors-card">
+        <div class="donors-card-icon">🛠</div>
+        <div class="donors-card-title">
+          <span data-en>Technical collaborators</span>
+          <span data-fr>Collaborateurs techniques</span>
+        </div>
+        <p class="donors-card-text">
+          <span data-en>Engineers, clinical informaticians, and health system integration specialists to build and validate the platform.</span>
+          <span data-fr>Ingénieurs, informaticiens cliniques et spécialistes de l'intégration des systèmes de santé.</span>
+        </p>
+      </div>
+    </div>
+    <div class="donors-cta-row">
+      <a href="#contact" class="btn-white">
+        <span data-en>Get in touch</span>
+        <span data-fr>Nous contacter</span>
+      </a>
+      <a href="#demo" class="btn-outline">
+        <span data-en>See the prototype again</span>
+        <span data-fr>Revoir le prototype</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Safiri<span>Care</span></div>
+        <p class="footer-tagline">
+          <span data-en>Coordinated maternal and primary care for the Democratic Republic of Congo.</span>
+          <span data-fr>Soins maternels et primaires coordonnés pour la République Démocratique du Congo.</span>
+        </p>
+        <div class="demo-banner">
+          <span data-en>Demo prototype &mdash; fictional data only</span>
+          <span data-fr>Prototype de démonstration &mdash; données fictives uniquement</span>
+        </div>
+      </div>
+      <div class="footer-contact">
+        <p><strong style="color:#fff">
+          <span data-en>Get in touch</span>
+          <span data-fr>Nous contacter</span>
+        </strong></p>
+        <p style="margin-top:12px">
+          <span data-en>For partnership or funding enquiries:</span>
+          <span data-fr>Pour les demandes de partenariat ou de financement :</span>
+        </p>
+        <p style="margin-top:6px"><a href="mailto:contact@safiricare.org">contact@safiricare.org</a></p>
+        <p style="margin-top:6px">
+          <span data-en>Registered in the DRC and Sweden</span>
+          <span data-fr>Enregistrée en RDC et en Suède</span>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 SafiriCare.
+        <span data-en>All rights reserved.</span>
+        <span data-fr>Tous droits réservés.</span>
+      </span>
+      <span>
+        <span data-en>Validated by Congo's healthcare system.</span>
+        <span data-fr>Validée par le système de santé congolais.</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// LANGUAGE TOGGLE
+function toggleLang() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-lang') || 'en';
+  html.setAttribute('data-lang', current === 'en' ? 'fr' : 'en');
+  html.setAttribute('lang', current === 'en' ? 'fr' : 'en');
+}
+
+// CARE JOURNEY DEMO
+const stepsData = [
+  {
+    roleEn: 'Community Worker',
+    roleFr: 'Agent Communautaire',
+    actionEn: 'Amina registered. Symptoms recorded: oedema, elevated blood pressure. Referral created.',
+    actionFr: 'Amina enregistrée. Symptômes notés : oedème, hypertension artérielle. Orientation créée.',
+    timeEn: 'Day 1 &bull; 09:14',
+    timeFr: 'Jour 1 &bull; 09h14',
+  },
+  {
+    roleEn: 'Clinic — Maternity Centre Kinshasa',
+    roleFr: 'Clinique — Centre Maternité Kinshasa',
+    actionEn: 'Referral accepted. Appointment confirmed for 11:00. Estimated wait: 20 min.',
+    actionFr: 'Orientation acceptée. Rendez-vous confirmé à 11h00. Attente estimée : 20 min.',
+    timeEn: 'Day 1 &bull; 09:31',
+    timeFr: 'Jour 1 &bull; 09h31',
+  },
+  {
+    roleEn: 'Clinic — Dr. Mbuyi',
+    roleFr: 'Clinique — Dr. Mbuyi',
+    actionEn: 'Consultation completed. Pre-eclampsia suspected. Lab test requested: urine protein, full blood count.',
+    actionFr: 'Consultation terminée. Pré-éclampsie suspectée. Analyses demandées : protéinurie, numération sanguine.',
+    timeEn: 'Day 1 &bull; 11:22',
+    timeFr: 'Jour 1 &bull; 11h22',
+  },
+  {
+    roleEn: 'Laboratory',
+    roleFr: 'Laboratoire',
+    actionEn: 'Results verified and linked to Amina\'s record. Protein +2, Hb 9.1 g/dL. Clinician notified.',
+    actionFr: 'Résultats vérifiés et liés au dossier d\'Amina. Protéine +2, Hb 9,1 g/dL. Clinicien notifié.',
+    timeEn: 'Day 1 &bull; 14:05',
+    timeFr: 'Jour 1 &bull; 14h05',
+  },
+  {
+    roleEn: 'Clinic — Dr. Mbuyi',
+    roleFr: 'Clinique — Dr. Mbuyi',
+    actionEn: 'Prescription issued: Methyldopa 250mg, iron supplements. Sent to Pharmacy Centrale digitally.',
+    actionFr: 'Ordonnance émise : Méthyldopa 250mg, suppléments en fer. Envoyée numériquement à la Pharmacie Centrale.',
+    timeEn: 'Day 1 &bull; 15:30',
+    timeFr: 'Jour 1 &bull; 15h30',
+  },
+  {
+    roleEn: 'Pharmacy Centrale',
+    roleFr: 'Pharmacie Centrale',
+    actionEn: 'Prescription verified. Methyldopa in stock. Dispensing confirmed. Amina collected medication.',
+    actionFr: 'Ordonnance vérifiée. Méthyldopa en stock. Dispensation confirmée. Amina a récupéré ses médicaments.',
+    timeEn: 'Day 1 &bull; 16:48',
+    timeFr: 'Jour 1 &bull; 16h48',
+  },
+  {
+    roleEn: 'Community Worker',
+    roleFr: 'Agent Communautaire',
+    actionEn: 'Follow-up visit completed. Amina stable. Blood pressure reducing. Next check scheduled in 7 days.',
+    actionFr: 'Visite de suivi effectuée. Amina stable. Pression artérielle en baisse. Prochain contrôle dans 7 jours.',
+    timeEn: 'Day 8 &bull; 10:00',
+    timeFr: 'Jour 8 &bull; 10h00',
+  }
+];
+
+let currentStep = 0;
+
+function getStepStatus(i) {
+  if (i < currentStep) return 'completed';
+  if (i === currentStep) return 'active';
+  return 'pending';
+}
+
+function getBadgeClass(status) {
+  if (status === 'completed') return 'badge-done';
+  if (status === 'active') return 'badge-active';
+  return 'badge-pending';
+}
+
+function getBadgeLabel(status) {
+  const lang = document.documentElement.getAttribute('data-lang') || 'en';
+  if (status === 'completed') return lang === 'en' ? 'Done' : 'Terminé';
+  if (status === 'active') return lang === 'en' ? 'In progress' : 'En cours';
+  return lang === 'en' ? 'Pending' : 'En attente';
+}
+
+function getStepIcon(i) {
+  if (getStepStatus(i) === 'completed') return '✓';
+  if (getStepStatus(i) === 'active') return '●';
+  return String(i + 1);
+}
+
+function renderJourney() {
+  const lang = document.documentElement.getAttribute('data-lang') || 'en';
+  const container = document.getElementById('journeySteps');
+  container.innerHTML = stepsData.map((s, i) => {
+    const status = getStepStatus(i);
+    return `
+      <div class="journey-step ${status}">
+        <div class="step-indicator">${getStepIcon(i)}</div>
+        <div class="step-info">
+          <div class="step-role">${lang === 'en' ? s.roleEn : s.roleFr}</div>
+          <div class="step-action">${lang === 'en' ? s.actionEn : s.actionFr}</div>
+          ${status !== 'pending' ? `<div class="step-time">${lang === 'en' ? s.timeEn : s.timeFr}</div>` : ''}
+        </div>
+        <span class="step-status-badge ${getBadgeClass(status)}">${getBadgeLabel(status)}</span>
+      </div>
+    `;
+  }).join('');
+
+  const btn = document.getElementById('journeyBtn');
+  const progress = document.getElementById('journeyProgress');
+  const lang2 = lang;
+  if (currentStep >= stepsData.length - 1) {
+    btn.disabled = true;
+    btn.textContent = lang2 === 'en' ? 'Journey complete' : 'Parcours complet';
+    progress.textContent = lang2 === 'en' ? 'All 7 steps completed' : '7 étapes terminées';
+  } else {
+    btn.disabled = false;
+    btn.innerHTML = lang2 === 'en' ? 'Next step &rarr;' : 'Étape suivante &rarr;';
+    progress.textContent = lang2 === 'en'
+      ? `Step ${currentStep + 1} of ${stepsData.length}`
+      : `Étape ${currentStep + 1} sur ${stepsData.length}`;
+  }
+}
+
+function advanceJourney() {
+  if (currentStep < stepsData.length - 1) {
+    currentStep++;
+    renderJourney();
+  }
+}
+
+// Re-render on language toggle
+const origToggle = toggleLang;
+window.toggleLang = function() {
+  origToggle();
+  renderJourney();
+};
+
+// Init
+renderJourney();
+</script>
+</body>
+</html>

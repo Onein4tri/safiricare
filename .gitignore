@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Python (Phase 2)
+__pycache__/
+*.pyc
+.env
+venv/
+db.sqlite3
+
+# Never commit
+*.key
+*.pem
+secrets/
+patient_data/
