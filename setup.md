@@ -1,32 +1,14 @@
-# Setup and deployment
+# Setup notes (for developers only)
 
-## Run locally
+This file is for the person who maintains the website. SafiriCare's team does not need it to view the site.
 
-No install needed.
+## Open the site
 
-**Option A:** double-click `index.html`. It opens in your browser.
+Download `index.html` and double click it. It opens in the browser.
 
-**Option B (recommended, behaves like a real server):**
+## Edit the text
 
-```bash
-cd safiricare
-python3 -m http.server 8000
-```
-
-Open http://localhost:8000
-
-## Deploy for free (GitHub Pages)
-
-1. Push this repository to GitHub.
-2. In the repository, go to **Settings → Pages**.
-3. Under "Build and deployment", set Source to **Deploy from a branch**, branch **main**, folder **/ (root)**.
-4. Save. After about one minute the site is live at `https://<username>.github.io/safiricare/`.
-
-Note: GitHub Pages makes the site public. The brief says the repository stays private at first. A private repository can still use Pages on a paid GitHub plan; otherwise deploy to Netlify or Vercel (both have free tiers and support private repositories).
-
-## Edit content
-
-Everything is in `index.html`. Each piece of text appears twice:
+Everything is in `index.html`. Each piece of text appears twice, once per language:
 
 ```html
 <span data-en>English text</span>
@@ -35,13 +17,26 @@ Everything is in `index.html`. Each piece of text appears twice:
 
 Change both. The language button at the top switches between them.
 
-Colours are defined once at the top of the file under `:root`. Change `--primary`, `--secondary` and `--accent` to match the logo when it is confirmed.
+## Change the colours
 
-## Replace the placeholders
+Colours are defined once at the top of `index.html` under `:root`. Change `--primary`, `--secondary` and `--accent` to match the logo when it is confirmed.
 
-Before showing this to partners, update:
+## Put the site online (when SafiriCare is ready)
 
-- Contact email in the footer (currently `contact@safiricare.org`)
-- Statistics in the hero and Problem section: verify each number against a current WHO or DHS source and add the source
-- Certificate or validation wording once the official document is available
-- Team section (not yet included, add when names and photos are confirmed)
+Putting the site online makes it visible to everyone, so do this only when the content is approved.
+
+- Netlify or Vercel: free plans, work with a private repository.
+- GitHub Pages: free for public repositories. Repository Settings, Pages, deploy from branch main, folder root.
+
+## Still to confirm with SafiriCare
+
+- Contact email in the footer (currently shows "Contact email to be confirmed")
+- Exact official wording about registration and validation
+- Logo and colours
+- Team section (not yet included)
+- French text proofread by a French speaker
+- Fictional medical example checked by a clinician
+
+## Rule for statistics
+
+Only add a number to the page with its source next to it.
